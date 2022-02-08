@@ -1,0 +1,55 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/recordings/add" method="POST">
+                    <div class="form-group">
+                        <label for="datum">Date</label>
+                        <input type="date"
+                               class="form-control"
+                               id="datum"
+                               name="datum"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chas">Time</label>
+                        <input type="time"
+                               class="form-control"
+                               id="chas"
+                               name="chas"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Producer</label>
+                        <select name="producer" class="form-control">
+                            <option th:each="producer : ${producers}"
+                                    th:value="${producer.getEmbg()}"
+                                    th:text="${producer.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Song</label>
+                        <select name="song" class="form-control">
+                            <option th:each="song : ${songs}"
+                                    th:value="${song.getIdPesna()}"
+                                    th:text="${song.getIme()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Studio</label>
+                        <select name="studio" class="form-control">
+                            <option th:each="studio : ${studios}"
+                                    th:value="${studio.getIdStudio()}"
+                                    th:text="${studio.getBroj()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/recordings">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>

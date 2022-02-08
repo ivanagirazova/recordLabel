@@ -1,0 +1,32 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+  <div class="container">
+    <div class="row">
+      <h4 class="text-center">List of all artist signed to our record label</h4>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Artist</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="artist : ${artists}">
+            <td><th:block th:text="${artist.getArtist()}"></th:block></td>
+            <td><th:block th:text="${artist.getIme()}"></th:block></td>
+            <td><th:block th:text="${artist.getPrezime()}"></th:block></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <form action="/artists/add-form" method="get">
+        <button type="submit" class="btn btn-dark">Add A New Artist</button>
+      </form>
+    </div>
+  </div>
+</th:block>

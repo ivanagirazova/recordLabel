@@ -1,0 +1,51 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <h4 class="text-center">List of all recording sessions</h4>
+        </div>
+        <div class="row justify-content-end">
+            <form method="get" action="/recordings/filter">
+                <label>Choose Song</label>
+                <select name="song" class="form-control">
+                    <option value="all">All Songs</option>
+                    <option th:each="song : ${songs}"
+                            th:value="${song.getIme()}"
+                            th:text="${song.getIme()}">
+                    </option>
+                </select>
+                <button TYPE="submit">Search</button>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Song Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Producer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="recording : ${recordings}">
+                        <td><th:block th:text="${recording.getPesna()}"></th:block></td>
+                        <td><th:block th:text="${recording.getDate()}"></th:block></td>
+                        <td><th:block th:text="${recording.getChas()}"></th:block></td>
+                        <td><th:block th:text="${recording.getArtist()}"></th:block></td>
+                        <td><th:block th:text="${recording.getAlbum()} != null ? ${recording.getAlbum()} : 'No Album' "></th:block></td>
+                        <td><th:block th:text="${recording.getProducentIme()} + ' ' + ${recording.getProducentPrezime()}"></th:block></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <form action="/recordings/add-form" method="get">
+                <button type="submit" class="btn btn-dark">Add A New Recording</button>
+            </form>
+        </div>
+    </div>
+</th:block>

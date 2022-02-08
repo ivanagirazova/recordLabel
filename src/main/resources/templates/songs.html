@@ -1,0 +1,61 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <h4 class="text-center">List of all songs from our signed artists</h4>
+        </div>
+        <div class="row justify-content-end">
+            <form method="get" action="/songs/filter-artist">
+                <label>Filter by Artist</label>
+                <select name="artist" class="form-control">
+                    <option value="all">All artists</option>
+                    <option th:each="artist : ${artists}"
+                            th:value="${artist.getStageName()}"
+                            th:text="${artist.getStageName()}">
+                    </option>
+                </select>
+                <button TYPE="submit">Search</button>
+            </form>
+            <form method="get" action="/songs/filter-album">
+                <label>Filter by Album</label>
+                <select name="album" class="form-control">
+                    <option value="all">All albums</option>
+                    <option th:each="album : ${albums}"
+                            th:value="${album.getIme()}"
+                            th:text="${album.getIme()}">
+                    </option>
+                </select>
+                <button TYPE="submit">Search</button>
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Song Name</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Collaboration</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="song : ${songs}">
+                        <td><th:block th:text="${song.getPesna()}"></th:block></td>
+                        <td><th:block th:text="${song.getArtist()}"></th:block></td>
+                        <td><th:block th:text="${song.getAlbum()} != null ? ${song.getAlbum()} : 'No Album' "></th:block></td>
+                        <td><th:block th:text="${song.getVremetraenje()}"></th:block></td>
+                        <td><th:block th:text="${song.getKolaboracija()} != null ? ${song.getKolaboracija()} : 'No Collaboration'"></th:block></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <form action="/songs/add-form" method="get">
+                <button type="submit" class="btn btn-dark">Add A New Song</button>
+            </form>
+        </div>
+    </div>
+</th:block>

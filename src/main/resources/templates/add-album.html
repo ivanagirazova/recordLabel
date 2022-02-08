@@ -1,0 +1,41 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/albums/add" method="POST">
+                    <div class="form-group">
+                        <label for="ime">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="ime"
+                               name="ime"
+                               required
+                               placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="vremetraenje">Duration</label>
+                        <input pattern="[0-9]{2}:[0-9]{2}"
+                               value="00:00"
+                               type="text"
+                               class="form-control"
+                               id="vremetraenje"
+                               name="vremetraenje"
+                               required
+                               placeholder="Enter duration in format 00:00">
+                    </div>
+                    <div class="form-group">
+                        <label>Artist</label>
+                        <select name="artist" class="form-control">
+                            <option th:each="artist : ${artists}"
+                                    th:value="${artist.getStageName()}"
+                                    th:text="${artist.getStageName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/albums">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>
